@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import convert from "../services/word_transform";
+import WordDisplay from "./word_display"
 
 const words = new Set([]);
 
@@ -72,7 +73,7 @@ const Converter = function() {
 
       </form>
 
-      <h2>{path[index]}</h2>
+      <WordDisplay word={path[index]} />
 
       <button onClick={prevIndex}>prev</button>
       <button onClick={nextIndex}>next</button>
