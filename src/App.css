@@ -1,4 +1,5 @@
 .App {
+  min-height: 100vh;
   text-align: center;
 }
 
@@ -36,3 +37,15 @@
     transform: rotate(360deg);
   }
 }
+
+.sticky {
+  position: sticky;
+  height: auto;
+  top: 0px;
+  overflow: hidden;
+}
+
+.word {
+  fill: black;
+}
+
