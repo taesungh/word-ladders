@@ -7,7 +7,7 @@ import { Queue } from "./util";
  * and all intermediate words are part of the valid words
  * @param {string} s1
  * @param {string} s2
- * @param {Set<string>} words - set of all valid words
+ * @param {{string: int}} wordFreq - collection of valid words and frequencies
  * @returns {string[]} - Array of words in conversion
  */
 function convert(s1, s2, words) {
@@ -42,7 +42,7 @@ function convert(s1, s2, words) {
         let word_next = a + String.fromCharCode(c) + b;
 
         // skip invalid words
-        if (!(words.has(word_next))) {
+        if (!(word_next in words)) {
           continue;
         }
 

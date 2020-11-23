@@ -21,4 +21,5 @@ Created using ReactJS.
 ## Authors and Acknowledgement
 Created by Taesung Hwang.\
 Inspiration by Professor Shindler.\
-Original word ladders/doublets puzzle by Lewis Carroll (Charles Dodgson).
+Original word ladders/doublets puzzle by Lewis Carroll (Charles Dodgson).\
+English word frequencies provided by Rachael Tatman.

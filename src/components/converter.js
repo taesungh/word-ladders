@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import WordDisplay from "./word_display";
 import convert from "../services/word_transform";
-
-const words = new Set([]);
+import wordFreq from "../services/word_freq";
 
 const _R_PAUSE = 0.2;
 const _H_WORD = 200;
@@ -41,7 +40,7 @@ const Converter = function() {
   }, [path]);
 
   const startConversion = () => {
-    const conversion = convert(startWord, endWord, words);
+    const conversion = convert(startWord, endWord, wordFreq);
     setIndex(0);
     setPath(conversion);
   };
