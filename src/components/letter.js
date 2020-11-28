@@ -1,24 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { MorphTransition } from 'react-svg-morph';
-import { paths, widths, height } from '../paths/jubilat-light'
+import { paths, widths, height, kerning } from '../paths/jubilat-light';
 
 
-const Letter = function({ char, nextChar, progress, scale, index }) {
+const Letter = function({ char, nextChar, progress, reverse, scale, index }) {
 
-  const [toChar, setToChar] = useState(char);
+  const [shrinking, setShrinking] = useState(false);
+  useEffect(() => {
+    // do not change shrinking when currently morphing
+    setShrinking(reverse !== (widths[nextChar] < widths[char]));
+  }, [char]);
+
+  const [update, setUpdate] = useState(null);
   useEffect(() => {
     // temporary fix to prevent pre-flickering to nextChar
-    // still flickers when progressing in reverse
-    setToChar(nextChar);
-  }, [nextChar]);
+    setUpdate(true);
+  }, []);
+
+  const width =
+    widths[char] + progress * (widths[nextChar] - widths[char]);
+  // MorphTransition is finicky about slice/meet
+  const par = `xMinYMid ${shrinking ? 'slice' : 'meet'}`;
 
   const svgChar = (char) => (
     <svg key={index + '_' + char}
-      width={widths[char] + progress * (widths[nextChar] - widths[char]) + 25}
-      height={height}>
+      width={scale * width}
+      height={scale * height}
+      viewBox={`0 0 ${width} ${height}`}
+      style={{margin: `0 ${scale * kerning/2}`}}
+    >
       <path d={paths[char]} />
     </svg>
   );
+
 
   if (char === nextChar) {
     return svgChar(char);
@@ -26,15 +40,16 @@ const Letter = function({ char, nextChar, progress, scale, index }) {
 
   return (
     <MorphTransition
-      width={widths[char] + progress * (widths[nextChar] - widths[char]) + 25}
-      height={height}
+      width={scale * width}
+      height={scale * height}
       progress={100 * progress}
       rotation="none"
-      style={{marginRight: ""}}
+      preserveAspectRatio={par}
+      style={{margin: `0 ${scale * kerning/2}`}}
     >
       {{
         from: svgChar(char),
-        to: svgChar(toChar)
+        to: svgChar(nextChar)
       }}
     </MorphTransition>
   );

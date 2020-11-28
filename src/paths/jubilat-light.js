@@ -35,7 +35,7 @@ const widths = {
   e: 132,
   f: 74,
   g: 149,
-  h: 145,
+  h: 158,
   i: 63,
   j: 48,
   k: 147,
@@ -59,4 +59,6 @@ const widths = {
 
 const height = 256;
 
-export { paths, widths, height };
+const kerning = 18;
+
+export { paths, widths, height, kerning };

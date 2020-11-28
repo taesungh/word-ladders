@@ -17,6 +17,7 @@ Created using ReactJS.
 * word size needs to decrease when overflowing
 * SVG interpolation does not look great (may consider using a stencil typeface and hand cleaning individual transitions)
 * need to decide whether or not conversion should be weighted along with which word database to use
+* path interpolation fails on certain characters
 
 ## Authors and Acknowledgement
 Created by Taesung Hwang.\

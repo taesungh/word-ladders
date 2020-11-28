@@ -4,7 +4,7 @@ import convert from "../services/word_transform";
 import wordFreq from "../services/word_freq";
 
 const _R_PAUSE = 0.2;
-const _H_WORD = 200;
+const _H_WORD = 150;
 const _H_MORPH = _H_WORD * (1 - _R_PAUSE)
 
 
@@ -15,16 +15,21 @@ const Converter = function() {
 
   const [path, setPath] = useState([]);
   const [index, setIndex] = useState(0);
-  const [height, setHeight] = useState(1);
+  const [height, setHeight] = useState(0);
+  const [reverse, setReverse] = useState(false);
 
 
   const updateHeight = () => {
-    let height = window.scrollY;
-    if (height < 0) {
+    let hScroll = window.scrollY;
+    if (hScroll < 0) {
       setHeight(0);
-    } else if (height < _H_WORD * (path.length - 1)) {
-      setHeight(height);
-      setIndex((height / _H_WORD) >> 0);
+    } else if (hScroll <= _H_WORD * (path.length - 1)) {
+      setHeight((height) => {
+        // invert direction if scrolling up
+        setReverse(hScroll <= height);
+        return hScroll;
+      });
+      setIndex((hScroll / _H_WORD) >> 0);
     } else {  // scroll has excedeed amount needed
       setHeight(_H_WORD * (path.length - 1) - 1);
     }
@@ -34,6 +39,7 @@ const Converter = function() {
 
   useEffect(() => {
     window.addEventListener("scroll", updateHeight);
+    // auto clean-up scroll listener
     return () => {
       window.removeEventListener("scroll", updateHeight);
     };
@@ -41,8 +47,15 @@ const Converter = function() {
 
   const startConversion = () => {
     const conversion = convert(startWord, endWord, wordFreq);
-    setIndex(0);
+    console.log(conversion);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
     setPath(conversion);
+    // setIndex(0);
+    setReverse(false);
   };
 
   const handleSubmit = (event) => {
@@ -92,7 +105,12 @@ const Converter = function() {
 
       </form>
 
-      <WordDisplay word={path[index]} nextWord={path[index+1]} progress={progress} />
+      <WordDisplay
+        word={path[index]}
+        nextWord={index + 1 < path.length ? path[index+1] : path[index]}
+        progress={progress}
+        reverse={reverse}
+      />
 
     </div>
   );
