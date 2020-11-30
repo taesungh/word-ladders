@@ -67,10 +67,10 @@ const Converter = function() {
   return (
     <div
       className="converter"
-      style={{height: `calc(${_H_WORD * (path.length - 1)}px + 100vh)`}}
+      style={{height: `calc(${_H_WORD * (path.length - 1)}px - 6rem + 80vh)`}}
     >
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="conversion-form sticky">
 
         <label htmlFor="startWord">starting word</label>
         <input
