@@ -8,16 +8,14 @@ Created using ReactJS.
 
 ## Notable Features
 * Uses scroll position for fluid progression of letters between words
+* responsive letter sizes
 * Attempts to transition between individual character shapes
 * TBD: may use a weighted conversion system that considers word frequencies
 
 ## Current Issues
-* path containing spaces (from no path message) causes TypeError
-* MorphTransition stutters when going in reverse (scrolling up)
-* word size needs to decrease when overflowing
 * SVG interpolation does not look great (may consider using a stencil typeface and hand cleaning individual transitions)
 * need to decide whether or not conversion should be weighted along with which word database to use
-* path interpolation fails on certain characters
+* path interpolation fails on certain characters (notably g, m, w)
 
 ## Authors and Acknowledgement
 Created by Taesung Hwang.\
