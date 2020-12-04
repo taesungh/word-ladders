@@ -31,10 +31,11 @@
 }
 
 h1 {
-  margin: 0.5rem;
+  margin-top: 1rem;
   min-height: 0vw;
-  font-size: min(5rem, calc(3vw + 2rem));
-  font-weight: 500;
+  font-family: modish;
+  font-size: min(8rem, calc(5vw + 2rem));
+  font-weight: 400;
 }
 
 .footer {
