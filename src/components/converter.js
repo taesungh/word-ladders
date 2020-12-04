@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import WordDisplay from "./word_display";
 import convert from "../services/word_transform";
 import wordFreq from "../services/word_freq";
+import "./form-input.css";
+import "./converter.css";
 
 const _R_PAUSE = 0.2;
 const _H_WORD = 150;
@@ -63,47 +65,68 @@ const Converter = function() {
     startConversion();
   }
 
+  // attempt to disable "are you sure" prompt
+  window.onbeforeunload = null;
+
+  const disperseStyle = {
+    opacity: `${Math.max(0, 0.8 * _H_WORD - height)}%`
+  };
 
   return (
     <div
       className="converter"
-      style={{height: `calc(${_H_WORD * (path.length - 1)}px - 6rem + 80vh)`}}
+      style={{height: `calc(${_H_WORD * (path.length - 1)}px - 4rem + 80vh)`}}
     >
+
+      <h3
+        style={disperseStyle}
+      >
+        Enter two words of the same length to find a path between them
+      </h3>
 
       <form onSubmit={handleSubmit} className="conversion-form sticky">
 
-        <label htmlFor="startWord">starting word</label>
         <input
           type="text"
           id="startWord"
+          className="form-control input-word"
           value={startWord}
           onChange={(event) => {
             setStartWord(event.target.value);
           }}
-          placeholder="start word"
+          placeholder="starting word"
+          aria-label="starting word"
         />
 
         <span>to</span>
 
-        <label htmlFor="endWord">destination word</label>
         <input
           type="text"
           id="endWord"
+          className="form-control input-word"
           value={endWord}
           onChange={(event) => {
             setEndWord(event.target.value);
           }}
-          placeholder="end word"
+          placeholder="ending word"
+          aria-label="ending word"
         />
 
         <button
           type="submit"
+          className="btn btn-convert"
           disabled={!startWord || !endWord}
         >
           Convert
         </button>
 
       </form>
+
+      <h3
+        style={disperseStyle}
+      >
+        {path.length > 1 ? "scroll down to see the word ladder" : ""}
+      </h3>
 
       <WordDisplay
         word={path[index]}

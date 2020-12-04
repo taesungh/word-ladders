@@ -1,0 +1,56 @@
+.converter {
+  min-height: 60vh;
+  margin: 2rem 0rem;
+  transition: height 2s;
+}
+
+.conversion-form {
+  margin: 0.5rem auto;
+  padding: 1rem;
+  top: min(8rem, 6vw);
+
+/* form-row */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.conversion-form > * {
+  margin: 5px;
+}
+
+h3 {
+  min-height: 0vw;
+  font-size: min(1.15rem, calc(1.5vw + 0.35rem));
+}
+
+.input-word {
+  max-width: 12rem;
+}
+.input-word::placeholder {
+  font-style: oblique;
+}
+
+.btn-convert {
+  color: #fff;
+  background-color: #f4a;
+  border-color: #f4a;
+  border-radius: .75rem;
+  padding: .375rem 1.25rem;
+  font-weight: 500;
+}
+.btn-convert:hover {
+  color: #fff;
+  background-color: #e38;
+  border-color: #c27;
+}
+
+.word {
+  margin: 2rem 0;
+  fill: black;
+  top: 30vh;
+}
+

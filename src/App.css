@@ -43,19 +43,3 @@ h1 {
   font-weight: 300;
   padding-bottom: 1.2rem;
 }
-
-.converter {
-  margin: 2rem 0rem;
-  transition: height 2s;
-}
-
-.conversion-form {
-  padding: 0.5rem;
-  top: 6rem;
-}
-
-.word {
-  margin: 2rem 0;
-  fill: black;
-  top: 30vh;
-}
