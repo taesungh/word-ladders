@@ -1,5 +1,7 @@
-import { Queue } from "./util";
+import { PriorityQueue } from "./util";
 
+const _W_STEP = 0.3
+const _W_FREQ = 1e6;
 
 /**
  * Determines sequence of intermediate words between the two given words
@@ -10,18 +12,31 @@ import { Queue } from "./util";
  * @param {{string: int}} wordFreq - collection of valid words and frequencies
  * @returns {string[]} - Array of words in conversion
  */
-function convert(s1, s2, words) {
+function convertWeighted(s1, s2, wordFreq) {
   const prev = {};
-  const q = new Queue();
+  const distances = {};
 
+  // priority queue will store [weight, word] and use default comparison
+  const unvisited = new PriorityQueue();
+  const visited = new Set();
+
+  // default distance is Infinity
+  distances[s1] = 0;
   prev[s1] = null;
-  q.enqueue(s1);
+  unvisited.push([0, s1]);
 
-  // expansive search
-  while (!q.isEmpty()) {
-    const word_curr = q.front();
+  // expansive search, based on Dijkstra's algorithm
+  while (!unvisited.isEmpty()) {
+    // select the word with the smallest distance
+    const [dist, word_curr] = unvisited.front();
 
-    // if target word reached, return reverse traversal
+    if (visited.has(word_curr)) {
+      // ignore leftover duplicate entries with greater distance
+      unvisited.pop();
+      continue;
+    }
+
+    // terminate search when destination word is reached
     if (word_curr === s2) {
       let w = word_curr;
       const path = [w];
@@ -32,8 +47,10 @@ function convert(s1, s2, words) {
       return path.reverse()
     }
 
-    q.dequeue();
-    // otherwise, check all neighboring words
+    unvisited.pop();
+    visited.add(word_curr);
+
+    // for each neighboring word found by substituting characters
     for (let i = 0; i < word_curr.length; ++i) {
       let a = word_curr.substr(0, i);
       let b = word_curr.substr(i + 1);
@@ -42,20 +59,30 @@ function convert(s1, s2, words) {
         let word_next = a + String.fromCharCode(c) + b;
 
         // skip invalid words
-        if (!(word_next in words)) {
+        if (!(word_next in wordFreq)) {
           continue;
         }
 
-        // enqueue all new words to search
-        if (!(word_next in prev)) {
+        // alternative distance is current known + distance to word_next
+        let altDist =
+          distances[word_curr] + _W_STEP + _W_FREQ / wordFreq[word_next];
+
+        if (!(visited.has(word_next))) {
+          unvisited.push([altDist, word_next]);
+        }
+
+        // otherwise, update distance if smaller than current known distance
+        if (!(word_next in distances) || altDist < distances[word_next]) {
+          distances[word_next] = altDist;
           prev[word_next] = word_curr;
-          q.enqueue(word_next);
+          // update the distance in the priority queue by pushing a duplicate
+          unvisited.push([altDist, word_next]);
         }
       }
     }
   }
 
-  return ["no path found"];
+  return ["no path"];
 }
 
-export default convert;
+export default convertWeighted;

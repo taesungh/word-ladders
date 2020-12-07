@@ -10,7 +10,7 @@ Created using ReactJS.
 * Uses scroll position for fluid progression of letters between words
 * responsive letter sizes
 * Attempts to transition between individual character shapes
-* TBD: may use a weighted conversion system that considers word frequencies
+* uses a weighted conversion system that considers word frequencies
 
 ## Current Issues
 * SVG interpolation does not look great (may consider using a stencil typeface and hand cleaning individual transitions)
