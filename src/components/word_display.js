@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Letter from "./letter";
-import { widths, kerning } from '../paths/jubilat-light'
+import { widths, kerning } from '../paths'
 
 const _MAX_WIDTH = 0.75;
 
@@ -12,7 +12,7 @@ const WordDisplay = function({ word, nextWord, progress, reverse }) {
 
   useEffect(() => {
     const handleResize = () => {
-      setFrame(0.75 * window.innerWidth);
+      setFrame(_MAX_WIDTH * window.innerWidth);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -50,9 +50,15 @@ const WordDisplay = function({ word, nextWord, progress, reverse }) {
       scale={scale}
     />
   ));
+  
+  const desc = word === nextWord ? word : `${word} to ${nextWord}`;
 
   return (
-    <div className="word sticky">
+    <div
+      className="word sticky"
+      title={desc}
+      aria-label={desc}
+    >
       {svgWord}
     </div>
   )

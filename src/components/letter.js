@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MorphTransition } from 'react-svg-morph';
-import { paths, widths, height, kerning } from '../paths/jubilat-light';
+import { paths, widths, height, kerning } from '../paths';
 
 
 const Letter = function({ char, nextChar, progress, reverse, scale, index }) {

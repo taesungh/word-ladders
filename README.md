@@ -13,9 +13,9 @@ Created using ReactJS.
 * uses a weighted conversion system that considers word frequencies
 
 ## Current Issues
-* SVG interpolation does not look great (may consider using a stencil typeface and hand cleaning individual transitions)
-* need to decide whether or not conversion should be weighted along with which word database to use
-* path interpolation fails on certain characters (notably g, m, w)
+* SVG interpolation does not look great without stencil typeface (may consider hand cleaning individual transitions)
+* path interpolation fails on certain characters depending on typeface
+* digram kerning could be improved
 
 ## Authors and Acknowledgement
 Created by Taesung Hwang.\
