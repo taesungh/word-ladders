@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/word-ladders/static/css/main.b848df3e.chunk.css",
+    "main.js": "/word-ladders/static/js/main.240df268.chunk.js",
+    "main.js.map": "/word-ladders/static/js/main.240df268.chunk.js.map",
+    "runtime-main.js": "/word-ladders/static/js/runtime-main.0eae950c.js",
+    "runtime-main.js.map": "/word-ladders/static/js/runtime-main.0eae950c.js.map",
+    "static/js/2.d858d2cc.chunk.js": "/word-ladders/static/js/2.d858d2cc.chunk.js",
+    "static/js/2.d858d2cc.chunk.js.map": "/word-ladders/static/js/2.d858d2cc.chunk.js.map",
+    "static/js/3.57e414ea.chunk.js": "/word-ladders/static/js/3.57e414ea.chunk.js",
+    "static/js/3.57e414ea.chunk.js.map": "/word-ladders/static/js/3.57e414ea.chunk.js.map",
+    "index.html": "/word-ladders/index.html",
+    "static/css/main.b848df3e.chunk.css.map": "/word-ladders/static/css/main.b848df3e.chunk.css.map",
+    "static/js/2.d858d2cc.chunk.js.LICENSE.txt": "/word-ladders/static/js/2.d858d2cc.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0eae950c.js",
+    "static/js/2.d858d2cc.chunk.js",
+    "static/css/main.b848df3e.chunk.css",
+    "static/js/main.240df268.chunk.js"
+  ]
+}
