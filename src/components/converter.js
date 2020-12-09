@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import WordDisplay from "./word_display";
 import convert from "../services/word_transform";
-import wordFreq from "../services/word_freq";
+import wordFreq from "../services/word_freq.json";
 import "./form-input.css";
 import "./converter.css";
 
@@ -35,7 +35,6 @@ const Converter = function() {
         });
         setIndex((hScroll / _H_WORD) >> 0);
       } else {  // scroll has excedeed amount needed
-        console.log(hScroll);
         setHeight(_H_WORD * (path.length - 1) - 1);
       }
     };
