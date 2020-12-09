@@ -1,13 +1,13 @@
 .converter {
-  min-height: 60vh;
-  margin: 2rem 0rem;
+  margin: 0;
+  padding: 0;
   transition: height 2s;
 }
 
 .conversion-form {
   margin: 0.5rem auto;
-  padding: 1rem;
-  top: min(9rem, 9vw + 1rem);
+  padding: 0.5rem;
+  top: min(9rem, 4vw + 3rem);
 
 /* form-row */
   display: flex;
@@ -19,16 +19,12 @@
 }
 
 .conversion-form > * {
-  margin: 5px;
-}
-
-h3 {
-  min-height: 0vw;
-  font-size: min(1.15rem, calc(1.5vw + 0.35rem));
+  margin: min(2vw, 5px);
 }
 
 .input-word {
-  max-width: 12rem;
+  max-width: min(30vw, 10rem);
+  padding: min(1vw, .375rem) min(3vw, .75rem);
 }
 .input-word::placeholder {
   font-style: oblique;
@@ -36,21 +32,21 @@ h3 {
 
 .btn-convert {
   color: #fff;
-  background-color: #f4a;
-  border-color: #f4a;
+  background-color: #4af;
+  border-color: #4af;
   border-radius: .75rem;
-  padding: .375rem 1.25rem;
+  padding: min(1vw, .375rem) min(3vw, 1.25rem);
   font-weight: 500;
 }
 .btn-convert:hover {
   color: #fff;
-  background-color: #e38;
-  border-color: #c27;
+  background-color: #38e;
+  border-color: #27c;
 }
 
 .word {
-  margin: 2rem 0;
-  fill: black;
+  margin: 1rem 0;
+  fill: #111;
   top: 30vh;
 }
 

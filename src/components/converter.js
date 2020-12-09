@@ -19,27 +19,27 @@ const Converter = function() {
   const [index, setIndex] = useState(0);
   const [height, setHeight] = useState(0);
   const [reverse, setReverse] = useState(false);
-
-
-  const updateHeight = () => {
-    let hScroll = window.scrollY;
-    if (hScroll < 0) {
-      setHeight(0);
-    } else if (hScroll <= _H_WORD * (path.length - 1)) {
-      setHeight((height) => {
-        // invert direction if scrolling up
-        setReverse(hScroll <= height);
-        return hScroll;
-      });
-      setIndex((hScroll / _H_WORD) >> 0);
-    } else {  // scroll has excedeed amount needed
-      setHeight(_H_WORD * (path.length - 1) - 1);
-    }
-  };
-
-  const progress = Math.min(height % _H_WORD, _H_MORPH) / _H_MORPH;
+  const [disperse, setDisperse] = useState(0);
 
   useEffect(() => {
+    const updateHeight = () => {
+      let hScroll = window.scrollY - _H_WORD;
+      if (hScroll < 0) {
+        setHeight(0);
+        setDisperse(hScroll + _H_WORD);
+      } else if (hScroll <= _H_WORD * (path.length - 1)) {
+        setHeight((height) => {
+          // invert direction if scrolling up
+          setReverse(hScroll <= height);
+          return hScroll;
+        });
+        setIndex((hScroll / _H_WORD) >> 0);
+      } else {  // scroll has excedeed amount needed
+        console.log(hScroll);
+        setHeight(_H_WORD * (path.length - 1) - 1);
+      }
+    };
+
     window.addEventListener("scroll", updateHeight);
     // auto clean-up scroll listener
     return () => {
@@ -47,17 +47,21 @@ const Converter = function() {
     };
   }, [path]);
 
+  const progress = Math.min(height % _H_WORD, _H_MORPH) / _H_MORPH;
+
   const startConversion = () => {
     const conversion = convert(startWord, endWord, wordFreq);
     console.log(conversion);
+    console.log(conversion.map((w) => [w, wordFreq[w]]));
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth'
+      behavior: 'smooth'    // unsupported in Safari
     });
     setPath(conversion);
-    // setIndex(0);
-    setReverse(false);
+    // both necessary to prevent glitches when scrolling back up
+    setIndex(0);
+    setHeight(0);
   };
 
   const handleSubmit = (event) => {
@@ -69,13 +73,13 @@ const Converter = function() {
   window.onbeforeunload = null;
 
   const disperseStyle = {
-    opacity: `${Math.max(0, 0.8 * _H_WORD - height)}%`
+    opacity: `${Math.max(0, 0.6 * _H_WORD - disperse)}%`
   };
 
   return (
     <div
       className="converter"
-      style={{height: `calc(${_H_WORD * (path.length - 1)}px - 4rem + 80vh)`}}
+      style={{height: path.length > 0 ? `calc(${_H_WORD * path.length}px + 100vh)` : "50vh"}}
     >
 
       <h3

@@ -3,16 +3,16 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-image: linear-gradient(to bottom, #5cd, #489);
+  background-image: linear-gradient(to bottom, #e78, #912);
 }
 
 .content {
-  min-height: 80vh;
+  flex-grow: 1;
   top: 0;
   background-color: hsla(0, 0%, 100%, 0.8);
-  margin: min(3rem, 5vw);
+  margin: min(3rem, 5vmin);
   margin-bottom: 1rem;
-  padding: min(1rem, 3vw);
+  padding: min(1rem, 3vmin);
   border-radius: 3rem;
   box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 20px;
 }
@@ -32,15 +32,24 @@
 
 h1 {
   margin-top: 1rem;
+  margin-bottom: -0.75rem;
+  font-family: blonde-fraktur;
   min-height: 0vw;
-  font-family: modish;
-  font-size: min(8rem, calc(5vw + 2rem));
+  font-size: min(8rem, 3.5vw + 2.25rem);
   font-weight: 400;
+  word-spacing: .75rem;
+  line-height: 1;
+}
+
+h3 {
+  min-height: 0vw;
+  font-size: min(1.15rem, 0.1vw + 0.8rem);
 }
 
 .footer {
   color: #eee;
-  font-size: .9rem;
+  min-height: 0vw;
+  font-size: min(1rem, 0.5vw + .5rem);
   font-weight: 300;
   padding-bottom: 1.2rem;
 }
