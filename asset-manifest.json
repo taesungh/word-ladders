@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/word-ladders/static/css/main.b848df3e.chunk.css",
-    "main.js": "/word-ladders/static/js/main.240df268.chunk.js",
-    "main.js.map": "/word-ladders/static/js/main.240df268.chunk.js.map",
+    "main.js": "/word-ladders/static/js/main.cf734320.chunk.js",
+    "main.js.map": "/word-ladders/static/js/main.cf734320.chunk.js.map",
     "runtime-main.js": "/word-ladders/static/js/runtime-main.0eae950c.js",
     "runtime-main.js.map": "/word-ladders/static/js/runtime-main.0eae950c.js.map",
     "static/js/2.d858d2cc.chunk.js": "/word-ladders/static/js/2.d858d2cc.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.0eae950c.js",
     "static/js/2.d858d2cc.chunk.js",
     "static/css/main.b848df3e.chunk.css",
-    "static/js/main.240df268.chunk.js"
+    "static/js/main.cf734320.chunk.js"
   ]
 }
